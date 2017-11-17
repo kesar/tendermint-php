@@ -2,6 +2,8 @@
 
 namespace TendermintPHP\Methods;
 
+use TendermintPHP\Types\Block;
+
 class Blocks extends AbstractMethods
 {
     public function block(int $blockNumber)
@@ -10,6 +12,6 @@ class Blocks extends AbstractMethods
             $this->client->request(null, 'block', [$blockNumber])
         );
 
-        return $response->getRpcResult();
+        return new Block($response->getRpcResult());
     }
 }
