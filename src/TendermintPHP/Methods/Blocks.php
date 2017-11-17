@@ -14,4 +14,15 @@ class Blocks extends AbstractMethods
 
         return new Block($response->getRpcResult());
     }
+
+    public function blockNumber(): int
+    {
+        $response = $this->client->send(
+            $this->client->request(null, 'status', [])
+        );
+
+        $result = $response->getRpcResult();
+
+        return $result['latest_block_height'];
+    }
 }
